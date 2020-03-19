@@ -2,7 +2,7 @@
 
 "use strict";
 
-const { addError, forEachHeading } = require("markdownlint-rule-helpers");
+const { addError, forEachHeading, escapeForRegExp } = require("markdownlint-rule-helpers");
 const { titleCase } = require("title-case");
 
 module.exports = {
@@ -12,14 +12,15 @@ module.exports = {
   "function": function rule(params, onError) {
     forEachHeading(params, (heading) => {
         const { line, lineNumber } = heading;
-        const titled = titleCase(line);
-        if (titled != line) {
+        const escapedLine = line.replace(/\{(.*?)\}/, '').replace(/\`(.*?)\`/, '');
+        const titled = titleCase(escapedLine);
+        if (titled != escapedLine) {
           const column = 1;
           const length = 1;
           addError(
             onError,
             lineNumber,
-            `Title Case: 'Expected ${titled}, found ${line}'`,
+            `Title Case: 'Expected ${titled}, found ${escapedLine}'`,
             null,
             [ column, length ],
             {

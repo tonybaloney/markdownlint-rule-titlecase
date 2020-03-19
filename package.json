@@ -1,6 +1,6 @@
 {
   "name": "markdownlint-rule-titlecase",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "A custom markdownlint rule for checking title case headings",
   "main": "rule.js",
   "author": "Anthony Shaw",
