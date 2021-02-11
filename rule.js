@@ -23,10 +23,6 @@ module.exports = {
             `Title Case: 'Expected ${titled}, found ${escapedLine}'`,
             null,
             [ column, length ],
-            {
-              "editColumn": column,
-              "deleteCount": length
-            }
           );
         }
       });
